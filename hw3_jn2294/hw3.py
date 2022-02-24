@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import scipy
 from scipy import linalg,integrate
 from sympy import *
+from scipy.linalg import lu, lu_factor, lu_solve, det
+
+
 
 import time
 import seaborn as sns
@@ -15,6 +18,12 @@ class HW3:
 
     # Problem 3.1
     def heartEquation(self,option,nsim=0):
+        """
+        Use Monte Carlo to compute the area
+        :param option:
+        :param nsim:
+        :return:
+        """
         if option == "monte":
             assert nsim != 0
             xlim = [-1.5, 1.5]
@@ -79,13 +88,21 @@ class HW3:
 
 
     # Problem 3.2
-    def integration(self,option,nsim=1000):
+    def integration(self,option,loop=False,nsim=1000):
+        """
+        :param option:
+        :param nsim: The number of point to simulate
+        :return:
+        """
+        f = lambda x: np.sin(x) / x
+        correct = scipy.integrate.quadrature(f,0,10)
         # Guassian Quadrature
         if option == "GQ":
             f = lambda x: np.sin(x)/x
             # I have modified the source code to make it output the order of the Guassian Quadrature
             result = scipy.integrate.quadrature(f,0,10) # tol=1.49e-8
             print("The numerical solution is {}\n".format(result[0]),"The err is {}\n".format(result[1]),"The first n resulting in err less than tol is {}".format(result[2]))
+            return result
 
         # Monte Carlo
         elif option == "monte":
@@ -124,40 +141,43 @@ class HW3:
                     points[n_points-1,:] = np.array([x[i],y[i],0])
                     other_points += 1
 
+            if not loop:
+                fig = plt.figure(figsize=(4.5, 4), dpi=200)
+                ax = plt.axes()
 
-            fig = plt.figure(figsize=(4.5, 4), dpi=200)
-            ax = plt.axes()
-
-            # Draw the positive area points
-            ax.scatter(points[np.where(points[:,2]==1)][:,0]
-                       , points[np.where(points[:,2]==1)][:,1]
-                       , color="blue"
-                       , s=0.5
-                       )
-
-
-            # Draw the negative area points
-            ax.scatter(points[np.where(points[:, 2]==-1) ][:,0]
-                       ,points[np.where(points[:, 2]==-1) ][:,1]
-                       , color="red"
-                       , s=0.5
-                       )
+                # Draw the positive area points
+                ax.scatter(points[np.where(points[:,2]==1)][:,0]
+                           , points[np.where(points[:,2]==1)][:,1]
+                           , color="blue"
+                           , s=0.5
+                           )
 
 
-            # Draw other area points
-            ax.scatter(points[np.where(points[:, 2]==0)][:,0]
-                       , points[np.where(points[:, 2]==0)][:,1]
-                       , color="yellow"
-                       , s=0.5
-                       )
+                # Draw the negative area points
+                ax.scatter(points[np.where(points[:, 2]==-1) ][:,0]
+                           ,points[np.where(points[:, 2]==-1) ][:,1]
+                           , color="red"
+                           , s=0.5
+                           )
 
-            ax.set_xlim(xlim)
-            ax.set_ylim(ylim)
-            plt.tight_layout()
-            plt.savefig("./program_imgs/integration.png")
-            plt.show()
 
-            print("area = {}".format(xrange * yrange * (pos_points-neg_points) / nsim))
+                # Draw other area points
+                ax.scatter(points[np.where(points[:, 2]==0)][:,0]
+                           , points[np.where(points[:, 2]==0)][:,1]
+                           , color="yellow"
+                           , s=0.5
+                           )
+
+                ax.set_xlim(xlim)
+                ax.set_ylim(ylim)
+                plt.tight_layout()
+                plt.savefig("./program_imgs/integration.png")
+                plt.show()
+
+                # print("The numerical solution is: {}\n".format(xrange * yrange * (pos_points-neg_points) / nsim),
+                #       "The err is {}".format(np.abs(xrange * yrange * (pos_points-neg_points) / nsim - correct[0])))
+
+            return xrange * yrange * (pos_points-neg_points) / nsim
 
 
     # Problem 3.3.1
@@ -350,10 +370,47 @@ class HW3:
         print("Total time spent:{}\n".format(time.time()-start))
 
     # Problem 3.4
-    def solveLinear(self, n):
-        A = self.randomGeneration(option="normal", n=n)
-        b = np.ones((n, 1))
-        x = linalg.solve(A, b)
+    def solveLinear(self, A, b,option):
+        if option == "official":
+            x = linalg.solve(A, b)
+        elif option == "Cramer":
+            assert A.shape[0] ==A.shape[1], "Need square coefficient matrix for linear equation system"
+            n = A.shape[0]
+            x = np.zeros(n)
+            for i in range(A.shape[0]):
+                acopy = A.copy()
+                acopy[:,i] = b
+                x[i] = det(acopy)/det(A)
+        elif option == "LU":
+            res = lu(A)  # P L U
+            LU,p = lu_factor(A)
+            x = lu_solve((LU,p),b)
+        elif option == "G":
+            n = A.shape[0]
+            b = b.reshape((n,1))
+            a = np.hstack((A,b))  # augmented matrix, self-written
+            x = np.zeros(n)
+            for i in range(n):
+                if a[i][i] == 0.0:
+                    print('Divide by zero detected!')
+                # Compare the ratio of adjacent two rows
+                for j in range(i + 1, n):
+                    ratio = a[j][i] / a[i][i]
+
+                    for k in range(n + 1):
+                        a[j][k] = a[j][k] - ratio * a[i][k]
+
+            x[n - 1] = a[n - 1][n] / a[n - 1][n - 1]
+
+            for i in range(n - 2, -1, -1):
+                x[i] = a[i][n]
+
+                for j in range(i + 1, n):
+                    x[i] = x[i] - a[i][j] * x[j]
+
+                x[i] = x[i] / a[i][i]
+        else:
+            x = 0
         return x
 
 
@@ -367,24 +424,88 @@ class HW3:
         print(self.matrix_multiplication(A, B, "Strassen"))
 
     def test_linear_equation(self, n):
-        x = self.solveLinear(n)
+        A = self.randomGeneration(option="normal", n=n)
+        b = np.ones(n)
+        print("Generated Matrix:", A)
+        print("Generated Vector:", b)
+        print("Start solving")
+        print("###############################")
 
-        print(x)
+        x = self.solveLinear(A,b,"official")
+        print("Official",x)
+        x = self.solveLinear(A,b,"LU")
+        print("LU",x)
+        x = self.solveLinear(A,b,"Cramer")
+        print("Cramer",x)
+        x = self.solveLinear(A,b,"G")
+        print("Guassian",x)
+
+    def speed_test_linearalg(self,n,iteration=200):
+        A = self.randomGeneration(option="normal", n=n)
+        b = np.ones(n)
+        print("Generated Matrix:", A)
+        print("Generated Vector:", b)
+        print("Start speed testing")
+        print("###############################")
+
+        time_map = {"official":0,"LU":0,"Cramer":0,"G":0}
+
+
+        start = time.time()
+        times = []
+        for i in range(iteration):
+            self.solveLinear(A,b,"official")
+            times.append(time.time()-start)
+
+        time_map["official"] = np.mean(times)
+
+        start = time.time()
+        times = []
+        for i in range(iteration):
+            self.solveLinear(A, b, "LU")
+            times.append(time.time() - start)
+
+        time_map["LU"] = np.mean(times)
+
+        start = time.time()
+        times = []
+        for i in range(iteration):
+            self.solveLinear(A, b, "Cramer")
+            times.append(time.time() - start)
+
+        time_map["Cramer"] = np.mean(times)
+
+
+        start = time.time()
+        times = []
+        for i in range(iteration):
+            self.solveLinear(A, b, "G")
+            times.append(time.time() - start)
+
+        time_map["G"] = np.mean(times)
+
+
+        return time_map
 
 
 if __name__ == "__main__":
     hw3 = HW3()
 
     # hw3.heartEquation("monte",nsim=100000)
+    # result_list = []
+    # for i in range(100):
+    #     result_list.append(hw3.integration("monte",loop=True,nsim=20000))
+    #
+    # print(np.mean(result_list))
 
-    # hw3.integration("monte",nsim=100000)
-
-    # hw3.integration("GQ")
-
+    # t = hw3.integration("GQ")
+    # print(np.abs(t[0]-1.6579773814530576))
     # hw3.test_random_matrix_multiplication(2**8)
 
     # hw3.test_linear_equation(10)
 
+    # time_map = hw3.speed_test_linearalg(100)
+    # print(time_map)
     # hw3.test_linear_equation(100)
 
 
