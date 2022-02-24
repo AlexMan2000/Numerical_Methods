@@ -190,7 +190,7 @@ class HW3:
         return matrix
 
     # Problem 3.3.2 - 3.3.4
-    def matrix_multiplication(self,m1,m2,option):
+    def matrix_multiplication(self,m1,m2,option,speed_test=False):
         """
         Perform matrix multiplication, providing two options, naive and Strassen Algorithm
         :param m1:
@@ -292,9 +292,10 @@ class HW3:
                         self.num_multiplications += dim
                         self.num_additions += (dim - 1)
 
-            print("Total number of multiplications:{}\n".format(self.num_multiplications))
-            print("Total number of additions:{}\n".format(self.num_additions))
-            print("Total time spent:{}\n".format(time.time()-start))
+            if not speed_test:
+                print("Total number of multiplications:{}\n".format(self.num_multiplications))
+                print("Total number of additions:{}\n".format(self.num_additions))
+                print("Total time spent:{}\n".format(time.time()-start))
 
             return result_matrix
 
@@ -308,9 +309,10 @@ class HW3:
             start = time.time()
             result_matrix = strass_helper(m1,m2)
 
-            print("Total number of multiplications:{}\n".format(self.num_multiplications))
-            print("Total number of additions:{}\n".format(self.num_additions))
-            print("Total time spent:{}\n".format(time.time()-start))
+            if not speed_test:
+                print("Total number of multiplications:{}\n".format(self.num_multiplications))
+                print("Total number of additions:{}\n".format(self.num_additions))
+                print("Total time spent:{}\n".format(time.time()-start))
 
             return result_matrix
 
@@ -418,10 +420,60 @@ class HW3:
         A = self.randomGeneration(option="uniform",n=n)
         B = self.randomGeneration(option="uniform",n=n)
 
+        print("Generation completed!")
         # print(self.official(A,B))
-        # print(self.matrix_multiplication(A, B, "naive"))
+        print(self.matrix_multiplication(A, B, "naive"))
         print("######################################################")
         print(self.matrix_multiplication(A, B, "Strassen"))
+
+
+    def speed_test_random_matrix_multiplication(self,max = 10):
+        n_list = [2**i for i in range(max)]
+        x_list = [i for i in range(max)]
+
+        time_naive = []
+
+        time_strassen = []
+
+
+
+        for n in n_list:
+            A = self.randomGeneration(option="uniform", n=n)
+            B = self.randomGeneration(option="uniform", n=n)
+
+            start = time.time()
+            self.matrix_multiplication(A,B,"naive",speed_test=True)
+            time_naive.append(time.time()-start)
+
+
+            start = time.time()
+            self.matrix_multiplication(A,B,"Strassen",speed_test=True)
+            time_strassen.append(time.time() - start)
+
+
+
+        fig = plt.figure(figsize=(4.5, 4), dpi=200)
+        ax = plt.axes()
+
+        ax.plot(x_list
+                   ,time_naive
+                   , color="red"
+                , label="naive"
+                   )
+        ax.plot(x_list
+                   , time_strassen
+                   , color = "blue"
+                , label = "strassen"
+                   )
+        ax.set_xlim(0,max-1)
+        ax.set_xticks(x_list)
+        ax.set_xlabel("n = 2^i")
+        ax.set_ylabel("Time(s)",rotation=0, y = 1)
+        plt.tight_layout()
+        plt.legend()
+        plt.savefig("./program_imgs/matrix_multiplication.png")
+        plt.show()
+
 
     def test_linear_equation(self, n):
         A = self.randomGeneration(option="normal", n=n)
@@ -500,7 +552,7 @@ if __name__ == "__main__":
 
     # t = hw3.integration("GQ")
     # print(np.abs(t[0]-1.6579773814530576))
-    # hw3.test_random_matrix_multiplication(2**8)
+    hw3.test_random_matrix_multiplication(2**10)
 
     # hw3.test_linear_equation(10)
 
@@ -508,4 +560,5 @@ if __name__ == "__main__":
     # print(time_map)
     # hw3.test_linear_equation(100)
 
+    # hw3.speed_test_random_matrix_multiplication(10)
 
