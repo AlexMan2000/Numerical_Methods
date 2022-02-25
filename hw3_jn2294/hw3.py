@@ -39,52 +39,82 @@ class HW3:
             def heartboundary(x,y):
                 return x**2 + (y-np.sqrt(np.abs(x)))**2 - 2
 
-            def circleboundary(x,y):
-                return x**2 + (y-(2*y*np.sqrt(np.abs(x)))/(2*y - 2*np.sqrt(2)))**2 - (np.sqrt(2)-(2*y*np.sqrt(np.abs(x)))/(2*y - 2*np.sqrt(2)))**2
+            # Find the radius of circle, since the radius of the circle is not larger than 1.5, we hard coded it here.
+            radius = self.helperCircle(0,1.5,100)
+
+            circleboundary = lambda x, y: x ** 2 + (y - (np.sqrt(2) - radius)) ** 2 - radius ** 2
+
 
             # Utilize a table to record the points coordinates
-            inside_coordinates = np.zeros((nsim,2))
-            inside_points = 0
+            inside_heart = np.zeros((nsim,2))
+            inside_circle = np.zeros((nsim, 2))
+            inside_heart_points = 0
+            inside_circle_points = 0
             for i in range(nsim):
-                in_out = heartboundary(x[i],y[i])
-                if in_out <= 0 :
-                    inside_points += 1
-                    inside_coordinates[inside_points-1,:] = np.array([x[i],y[i]])
+                in_out_heart = heartboundary(x[i],y[i])
+                in_out_circle = circleboundary(x[i], y[i])
+                if in_out_circle <= 0:
+                    inside_circle_points += 1
+                    inside_circle[inside_circle_points - 1, :] = np.array([x[i], y[i]])
+                if in_out_heart <= 0 :
+                    inside_heart_points += 1
+                    inside_heart[inside_heart_points-1,:] = np.array([x[i],y[i]])
 
-            # Circle Simulation
-            # inside_circles = np.zeros((nsim,2))
-            # inside_circle_points = 0
-            # for i in range(nsim):
-            #     in_out = circleboundary(x[i], y[i])
-            #     if in_out <= 0:
-            #         inside_circle_points += 1
-            #         inside_circles[inside_circle_points - 1, :] = np.array([x[i], y[i]])
 
 
             fig = plt.figure(figsize=(4.5, 4), dpi=200)
             ax = plt.axes()
 
-            ax.scatter(inside_coordinates[0:inside_points, 0]
-                       , inside_coordinates[0:inside_points, 1]
+            ax.scatter(inside_heart[0:inside_heart_points, 0]
+                       , inside_heart[0:inside_heart_points, 1]
                        , color="red"
                        , s=0.5
                        )
-            # ax.scatter(inside_circles[0:inside_circle_points,0]
-            #            , inside_circles[0:inside_circle_points,1]
-            #            , color = "blue"
-            #            , s= 0.5)
+            ax.scatter(inside_circle[0:inside_circle_points,0]
+                       , inside_circle[0:inside_circle_points,1]
+                       , color = "blue"
+                       , s= 0.5)
             ax.set_xlim(xlim)
             ax.set_ylim(ylim)
             plt.tight_layout()
-            plt.savefig("./program_imgs/heart.png")
+            plt.savefig("./program_imgs/hearttest.png")
             plt.show()
 
-            print("area = {}".format(xrange * yrange * inside_points / nsim))
+            print("area = {}".format(xrange * yrange * (inside_heart_points- inside_circle_points) / nsim))
 
         elif option == "newton":
             pass
         elif option == "GQ":
             pass
+
+
+    def helperCircle(self,start,end,n_iter,xsim=1000,ysim=1000):
+        """
+        This function find the radius of the tangent circle
+        :param start:
+        :param end:
+        :param n_iter:
+        :param xsim:
+        :param ysim:
+        :return:
+        """
+        circle_boundary = None
+        heart_boundary = lambda x,y:x**2 + (y-np.sqrt(np.abs(x)))**2 - 2 <=0
+        x_list = np.linspace(-1.5,1.5,xsim)
+        y_list = np.linspace(-1.5,2.5,ysim)
+        xv,yv = np.meshgrid(x_list,y_list)
+        radius_list = np.linspace(start,end,n_iter)
+        for i, radius in enumerate(radius_list):
+            circle_boundary = lambda x,y: x**2+(y-(np.sqrt(2)-radius))**2-radius**2 <=0
+            for i in range(xsim):
+                for j in range(ysim):
+
+                    isincircle = circle_boundary(xv[i,j],yv[i,j])
+
+                    isinheart = heart_boundary(xv[i,j],yv[i,j])
+
+                    if isincircle and not isinheart:
+                        return radius_list[i-1]
 
 
     # Problem 3.2
@@ -188,6 +218,7 @@ class HW3:
         elif option == "normal":
             matrix = np.random.normal(0,1,n*n).reshape(n,n)
         return matrix
+
 
     # Problem 3.3.2 - 3.3.4
     def matrix_multiplication(self,m1,m2,option,speed_test=False):
@@ -316,6 +347,8 @@ class HW3:
 
             return result_matrix
 
+
+    # Deprecated
     def official(self,m1,m2):
 
         import numpy as np
@@ -371,6 +404,7 @@ class HW3:
         print(result_matrix)
         print("Total time spent:{}\n".format(time.time()-start))
 
+
     # Problem 3.4
     def solveLinear(self, A, b,option):
         if option == "official":
@@ -416,7 +450,13 @@ class HW3:
         return x
 
 
+    # Test and speed test
     def test_random_matrix_multiplication(self, n=2 ** 10):
+        """
+        Test the result of the matrix multiplication algorithm
+        :param n: The dimension of the input matrix
+        :return: None
+        """
         A = self.randomGeneration(option="uniform",n=n)
         B = self.randomGeneration(option="uniform",n=n)
 
@@ -428,14 +468,17 @@ class HW3:
 
 
     def speed_test_random_matrix_multiplication(self,max = 10):
+        """
+        Test the time spent on the matrix multiplication algorithm
+        :param max: The maximum dimension of the input matrix, dim_max = max-1
+        :return: The graph
+        """
         n_list = [2**i for i in range(max)]
         x_list = [i for i in range(max)]
 
         time_naive = []
 
         time_strassen = []
-
-
 
         for n in n_list:
             A = self.randomGeneration(option="uniform", n=n)
@@ -476,6 +519,11 @@ class HW3:
 
 
     def test_linear_equation(self, n):
+        """
+        Test linear equation solvers' results
+        :param n: The dimension of the coefficient matrix A
+        :return:
+        """
         A = self.randomGeneration(option="normal", n=n)
         b = np.ones(n)
         print("Generated Matrix:", A)
@@ -492,7 +540,14 @@ class HW3:
         x = self.solveLinear(A,b,"G")
         print("Guassian",x)
 
+
     def speed_test_linearalg(self,n,iteration=200):
+        """
+        Test the time spent with different linear equation solver
+        :param n: The dimension of the coefficient matrix A
+        :param iteration:
+        :return:
+        """
         A = self.randomGeneration(option="normal", n=n)
         b = np.ones(n)
         print("Generated Matrix:", A)
@@ -543,22 +598,20 @@ class HW3:
 if __name__ == "__main__":
     hw3 = HW3()
 
-    # hw3.heartEquation("monte",nsim=100000)
-    # result_list = []
-    # for i in range(100):
-    #     result_list.append(hw3.integration("monte",loop=True,nsim=20000))
-    #
-    # print(np.mean(result_list))
 
-    # t = hw3.integration("GQ")
-    # print(np.abs(t[0]-1.6579773814530576))
+    # Write the problem you want to test on
+
+
+
+    """
+    hw3.heartEquation("monte",nsim=100000)
+    t = hw3.integration("GQ")
+    print(np.abs(t[0]-1.6579773814530576))
     hw3.test_random_matrix_multiplication(2**10)
-
-    # hw3.test_linear_equation(10)
-
-    # time_map = hw3.speed_test_linearalg(100)
-    # print(time_map)
-    # hw3.test_linear_equation(100)
-
-    # hw3.speed_test_random_matrix_multiplication(10)
-
+    print(hw3.helperCircle(0,1.5,100))
+    hw3.test_linear_equation(10)
+    time_map = hw3.speed_test_linearalg(100)
+    print(time_map)
+    hw3.test_linear_equation(100)
+    hw3.speed_test_random_matrix_multiplication(10)
+    """
