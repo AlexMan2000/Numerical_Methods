@@ -6,7 +6,7 @@ from sympy import *
 from scipy.linalg import lu, lu_factor, lu_solve, det
 
 
-
+import math
 import time
 import seaborn as sns
 sns.set()
@@ -40,10 +40,10 @@ class HW3:
                 return x**2 + (y-np.sqrt(np.abs(x)))**2 - 2
 
             # Find the radius of circle, since the radius of the circle is not larger than 1.5, we hard coded it here.
-            radius = self.helperCircle(0,1.5,100)
+            # Take very long time to finish
+            radius = self.helperCircle(0,1.5,10000)
 
             circleboundary = lambda x, y: x ** 2 + (y - (np.sqrt(2) - radius)) ** 2 - radius ** 2
-
 
             # Utilize a table to record the points coordinates
             inside_heart = np.zeros((nsim,2))
@@ -77,7 +77,7 @@ class HW3:
             ax.set_xlim(xlim)
             ax.set_ylim(ylim)
             plt.tight_layout()
-            plt.savefig("./program_imgs/hearttest.png")
+            # plt.savefig("./program_imgs/hearttest.png")
             plt.show()
 
             print("area = {}".format(xrange * yrange * (inside_heart_points- inside_circle_points) / nsim))
@@ -115,7 +115,6 @@ class HW3:
 
                     if isincircle and not isinheart:
                         return radius_list[i-1]
-
 
     # Problem 3.2
     def integration(self,option,loop=False,nsim=1000):
@@ -221,21 +220,44 @@ class HW3:
 
 
     # Problem 3.3.2 - 3.3.4
-    def matrix_multiplication(self,m1,m2,option,speed_test=False):
+    def matrix_multiplication(self,m1,m2,option,speed_test=False,level=3):
         """
         Perform matrix multiplication, providing two options, naive and Strassen Algorithm
-        :param m1:
-        :param m2:
+        :param m1: First matrix
+        :param m2: Second matrix
+        :param option: None-functional
+        :param speed_test: Whether to enable speed test
+        :param level: Control strassen level, 3 is default
         :return:
         """
         self.num_multiplications = 0
         self.num_additions = 0
+        self.n_ori = math.log(m1.shape[0],2)  # 2^10's n_ori is 10
 
         # Helper functions for matrix properties check and recursions
         def dim_check(m1,m2)->int:
             dim1 = m1.shape[1]
             dim2 = m2.shape[0]
             return  dim1 == dim2
+
+        def naive_multiplication(m1,m2):
+            assert dim_check(m1, m2) == True, "Dimension mismatch, cannot perform multiplication operation"
+
+            # Shape of output matrix
+            row = m1.shape[0]
+            column = m2.shape[1]
+            result_matrix = np.zeros((row, column))
+            dim = m1.shape[0]
+            for i in range(row):
+                for j in range(column):
+                    for k in range(dim):
+                        # Vanilla version
+                        result_matrix[i][j] += m1[i, k] * m2[k, j]
+
+                        self.num_multiplications += 1
+                        self.num_additions += 1
+                    self.num_additions -= 1
+            return result_matrix
 
         def judge_square(matrix)->int:
             return matrix.shape[0] == matrix.shape[1]
@@ -261,13 +283,12 @@ class HW3:
         def strass_helper(A,B)->np.ndarray:
             assert A.shape == B.shape
 
-            # Terminating condition, the matrix of 1 x 1
-            if A.shape[0] == 1:
-                result = A.dot(B)
-                self.num_multiplications += 1
+            # Terminating condition, the matrix of 1 x 1, perform a n-level strassen
+            if math.log(A.shape[0],2) == self.n_ori - level:
+                result = naive_multiplication(A,B)
+                # self.num_multiplications += 1
 
-                return np.array([[result]])
-
+                return result
             n = A.shape[0]
             result_matrix = np.zeros(A.shape)
 
@@ -320,8 +341,9 @@ class HW3:
                         # Vecotrized Version
                         # result_matrix[i][j] = m1[i].dot(m2[j])
 
-                        self.num_multiplications += dim
-                        self.num_additions += (dim - 1)
+                        self.num_multiplications += 1
+                        self.num_additions += 1
+                    self.num_additions -=1
 
             if not speed_test:
                 print("Total number of multiplications:{}\n".format(self.num_multiplications))
@@ -451,7 +473,7 @@ class HW3:
 
 
     # Test and speed test
-    def test_random_matrix_multiplication(self, n=2 ** 10):
+    def test_random_matrix_multiplication(self, n=2 ** 10, level = 3):
         """
         Test the result of the matrix multiplication algorithm
         :param n: The dimension of the input matrix
@@ -459,12 +481,12 @@ class HW3:
         """
         A = self.randomGeneration(option="uniform",n=n)
         B = self.randomGeneration(option="uniform",n=n)
-
+        # n_ori = np.log(n,2)
         print("Generation completed!")
         # print(self.official(A,B))
-        print(self.matrix_multiplication(A, B, "naive"))
+        print(self.matrix_multiplication(A, B, option= "naive",level=level))
         print("######################################################")
-        print(self.matrix_multiplication(A, B, "Strassen"))
+        print(self.matrix_multiplication(A, B, option= "Strassen",level=level))
 
 
     def speed_test_random_matrix_multiplication(self,max = 10):
@@ -600,8 +622,6 @@ if __name__ == "__main__":
 
 
     # Write the problem you want to test on
-
-
 
     """
     hw3.heartEquation("monte",nsim=100000)
