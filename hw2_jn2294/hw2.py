@@ -84,7 +84,9 @@ class HW2():
                 print("The correct result is {0}, the error is {1}"
                       .format( correct, np.abs(correct - result)))
 
+
     # 2.4 Simpson's 1/3 Rule
+    # 书上第624页，利用二阶拉格朗日插值
     def simpson(self,n,speed_test=False,dis_error = False):
         """
         :param n: Number of intervals
@@ -92,14 +94,18 @@ class HW2():
         :param dis_error: switch off for speed test to exclude the effect of print estimation error
         :return:
         """
+
         delta_x = (self.end-self.start)/n
-        points = np.linspace(self.start,self.end,n+1)
-        if n > 2:
-            coeff_vec = np.array([1]+[4,2]*((n-2)//2)+[4]+[1],dtype=float)
-        else:
-            coeff_vec = np.array([1,4,1],dtype=float)
-        function_value = np.array([self.f_diff(point) for point in points],dtype=float)
-        result = delta_x*coeff_vec.dot(function_value)/3
+        # points = np.linspace(self.start,self.end,n+1)
+        # if n > 2:
+        #     coeff_vec = np.array([1]+[4,2]*((n-2)//2)+[4]+[1],dtype=float)
+        # else:
+        #     coeff_vec = np.array([1,4,1],dtype=float)
+
+        result = (self.end-self.start)/6* (self.f(self.start) + 4 * self.f((self.start + self.end) / 2)+self.f(self.end))
+        #
+        # function_value = np.array([self.f(point) for point in points],dtype=float)
+        # result = delta_x*coeff_vec.dot(function_value)/3
 
         if not speed_test:
             print("The integration of f'(x) under n={0} on [{1},{2}] is {3}".format(n,self.start,self.end,result))
@@ -109,10 +115,45 @@ class HW2():
                 print("The correct result is {0}, the error is {1}"
                       .format( correct, np.abs(correct - result)))
 
+
+
+
+    def trapezoid(self,n,speed_test=False,dis_error = False):
+        result = (self.f(self.start) + self.f(self.end))/2*(self.end-self.start)
+
+        if not speed_test:
+            print("The integration of f'(x) under n={0} on [{1},{2}] is {3}".format(n, self.start, self.end, result))
+
+            if dis_error:
+                correct = 4.21009627762213
+                print("The correct result is {0}, the error is {1}"
+                      .format(correct, np.abs(correct - result)))
+
+
+
+    # 书上第624页，利用三阶拉格朗日插值
+    def simpson3_8(self,n,speed_test=False,dis_error = False):
+        # n = 2k+1, k=0,1,2,.......
+        delta_x = (self.end - self.start) / n
+        # points = np.linspace(self.start, self.end, n + 1)
+
+        result = ((self.end-self.start)/8)*(self.f(self.start)+3*self.f((2*self.start+self.end)/3)+3*self.f((self.start+self.end*2)/3)+self.f(self.end))
+
+        if not speed_test:
+            print("The integration of f'(x) under n={0} on [{1},{2}] is {3}".format(n, self.start, self.end, result))
+
+            if dis_error:
+                correct = 4.21009627762213
+                print("The correct result is {0}, the error is {1}"
+                      .format(correct, np.abs(correct - result)))
+
+
+
+
     # 2.5 Gaussian Quadrature
     def gaussian(self,n,speed_test=False,dis_error = False):
         """
-        :param n: Number of points
+        :param n: Number of points, n = 2k, k=0,1,2,...
         :param speed_test: whether to take speed test, switch off to exclude the effect of print statement
         :param dis_error: switch off for speed test to exclude the effect of print estimation error
         :return:
@@ -267,6 +308,10 @@ if __name__ =="__main__":
     # hw2.speed_test1()
     #
     # hw2.speed_test2()
+    #
+    # f = lambda x:5*x**4*np.cos(x**5) + 3*x**2
+    # print(scipy.integrate.quadrature(f,1.5,2.0))
 
-    f = lambda x:5*x**4*np.cos(x**5) + 3*x**2
-    print(scipy.integrate.quadrature(f,1.5,2.0))
+    hw2.simpson(10)
+    hw2.simpson3_8(11)
+    hw2.trapezoid(10)

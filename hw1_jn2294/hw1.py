@@ -260,17 +260,17 @@ if __name__ =="__main__":
     hw1 = HW1()
 
     # Test 1.1
-    hw1.bisectionMethod(0,1)
+    # hw1.bisectionMethod(0,1)
 
     # Test 1.2
-    hw1.newtonMethod()
-
-    # Test 1.3
-    hw1.secantMethod(0,1)
-
-    # Test 1.4
-    hw1.fixedPointMethod()
-
-    # Test 1.5
+    # hw1.newtonMethod()
+    #
+    # # Test 1.3
+    # hw1.secantMethod(0,1)
+    #
+    # # Test 1.4
+    # hw1.fixedPointMethod()
+    #
+    # # Test 1.5
     data_point = [(1,930.00),(2,918.40),(3,937.41),(4,829.10),(5,846.35)]
     hw1.interpolation(data_point,4)

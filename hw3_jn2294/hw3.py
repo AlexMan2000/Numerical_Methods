@@ -5,6 +5,8 @@ from scipy import linalg,integrate
 from sympy import *
 from scipy.linalg import lu, lu_factor, lu_solve, det
 
+# numba 加速
+import numba as nb
 
 import math
 import time
@@ -232,7 +234,7 @@ class HW3:
         """
         self.num_multiplications = 0
         self.num_additions = 0
-        self.n_ori = math.log(m1.shape[0],2)  # 2^10's n_ori is 10
+        n_ori = math.log(m1.shape[0],2)  # 2^10's n_ori is 10
 
         # Helper functions for matrix properties check and recursions
         def dim_check(m1,m2)->int:
@@ -240,6 +242,7 @@ class HW3:
             dim2 = m2.shape[0]
             return  dim1 == dim2
 
+        # @nb.jit()
         def naive_multiplication(m1,m2):
             assert dim_check(m1, m2) == True, "Dimension mismatch, cannot perform multiplication operation"
 
@@ -272,6 +275,7 @@ class HW3:
 
             return 1 if (n & (n-1)==0) else 0
 
+        # @nb.jit()
         def segment_matrix(matrix)->tuple:
             n = matrix.shape[0]
             s11 = matrix[:n//2,:n//2]
@@ -280,11 +284,12 @@ class HW3:
             s22 = matrix[n//2:,n//2:]
             return s11,s12,s21,s22
 
+        # @nb.jit()
         def strass_helper(A,B)->np.ndarray:
             assert A.shape == B.shape
-
+            nonlocal n_ori
             # Terminating condition, the matrix of 1 x 1, perform a n-level strassen
-            if math.log(A.shape[0],2) == self.n_ori - level:
+            if math.log(A.shape[0],2) == n_ori - level:
                 result = naive_multiplication(A,B)
                 # self.num_multiplications += 1
 
@@ -303,14 +308,14 @@ class HW3:
             m6 = strass_helper(a21-a11,b11+b12)
             m7 = strass_helper(a12-a22,b21+b22)
 
-            self.num_additions += a11.shape[0]**2*10
+            # self.num_additions += a11.shape[0]**2*10
 
             c11 = m1 + m4 - m5 + m7
             c12 = m3 + m5
             c21 = m2 + m4
             c22 = m1 - m2 + m3 + m6
 
-            self.num_additions += a11.shape[0]**2*8
+            # self.num_additions += a11.shape[0]**2*8
 
             result_matrix[:n//2,:n//2] = c11
             result_matrix[:n//2,n//2:] = c12
@@ -455,17 +460,21 @@ class HW3:
                 for j in range(i + 1, n):
                     ratio = a[j][i] / a[i][i]
 
-                    for k in range(n + 1):
+                    for k in range(n + 1): # since we have augmented matrix
                         a[j][k] = a[j][k] - ratio * a[i][k]
 
+            # last index's solution
             x[n - 1] = a[n - 1][n] / a[n - 1][n - 1]
 
             for i in range(n - 2, -1, -1):
                 x[i] = a[i][n]
 
+                # 需要减掉之前算过的每一个解
                 for j in range(i + 1, n):
+                    # a这里就是系数
                     x[i] = x[i] - a[i][j] * x[j]
 
+                # a[i][i]就是(i,i)元素的值
                 x[i] = x[i] / a[i][i]
         else:
             x = 0
@@ -635,3 +644,5 @@ if __name__ == "__main__":
     hw3.test_linear_equation(100)
     hw3.speed_test_random_matrix_multiplication(10)
     """
+
+    hw3.test_random_matrix_multiplication(2 ** 5)
