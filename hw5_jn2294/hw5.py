@@ -85,21 +85,40 @@ class HW5:
         return x_list
 
 
-    def formatPolyFunction(self):
+    def formatPolyFunction(self,order=None,coeff=None,mode="lambda"):
         """
         Format the expression for the poly interpolation
         :param order: The order of the polynomial function
         :param coeff: The coefficient of the poly function
         :return: independent_variable, function, formatted_function
         """
-        def outer(x,order_list,coeff):
-            res = 0
-            for order,coeff in zip(order_list,coeff):
-                res += coeff*(np.power(x,order))
-            return res
+        if mode =="lambda":
+            def outer(x,order_list,coeff):
+                res = 0
+                for order,coeff in zip(order_list,coeff):
+                    res += coeff*(np.power(x,order))
+                return res
 
-        # return a lambda function
-        return outer
+            # return a lambda function
+            return outer
+        else:
+            order_list = [i for i in range(order, -1, -1)]
+            x = sympy.symbols('x')
+            f = 0
+            for order, coeff in zip(order_list, coeff):
+                f += coeff * (x ** order)
+
+            return x, f, str(f)
+
+    def plotInterpolation(self, data_point, func, x0):
+        x_list = [pair[0] for pair in data_point]
+        y_list = [pair[1] for pair in data_point]
+        x_poly = np.linspace(data_point[0][0], data_point[-1][0], 100)
+        y_poly = [float(func.evalf(subs={x0: x})) for x in x_poly]
+        plt.plot(x_list, y_list, "ro",label="original")
+        plt.plot(x_poly, y_poly, label="poly_interpolation")
+        plt.legend()
+        plt.show()
 
 
     def polynomialErrorFunctionPlot(self,x_inter_points,func=None):
@@ -151,16 +170,10 @@ class HW5:
 
     # Polynomial fitting
     def polynomialModelFitting(self, datapoints, order):
-        x_points = np.array(list(map(lambda x: x[0], datapoints)))
-        y_points = np.array(list(map(lambda x: x[1], datapoints)))
+        A = self.construct_A(datapoints,order)
+        b = self.construct_b(datapoints,"polynomial")
 
-        # 形状因为包括了0阶，1阶，2阶，所以有三列
-        A = np.zeros((x_points.shape[0], order + 1))
-
-        for i in range(order + 1):
-            A[:, i] = x_points ** i
-
-        x, rsme = self.normalEquation(A, y_points)
+        x, rsme = self.normalEquation(A, b)
         return x,rsme
 
 
@@ -189,6 +202,7 @@ class HW5:
 
         # 2. Solution for co-efficient for polynomial interpolation
         coeff = np.linalg.solve(A,b)
+        print(coeff)
 
         # 2.1 The polynomial interpolation function
         interpolated_function = self.formatPolyFunction()
@@ -260,24 +274,18 @@ class HW5:
         order = 3
         x,rsme = self.polynomialModelFitting(data_points, order = order)
 
-        order_list = [i for i in range(order, -1, -1)]
-        interpolated_function = self.formatPolyFunction()
+        # order_list = [i for i in range(order, -1, -1)]
+        x0, func, formatted_func = self.formatPolyFunction(order=3,coeff = x,mode="sympy")
 
 
         # 3. Try to draw the full function plot
-        x_inter_full = np.linspace(start, end, 1000)
-        x = np.array(x)
-        print(x)
-        y_inter_full = interpolated_function(x_inter_full, order_list, x)
-
-        plt.plot(x_inter, y_inter, "ro", label="interpolation points")
-
-        plt.plot(x_inter_full, y_inter_full, label="interpolated function")
-        plt.show()
+        self.plotInterpolation(data_points, func, x0)
+        print("Coefficient:{}".format(x))
+        print("RSME:{}".format(rsme))
         return x,rsme
 
 
-    def problem4(self,start=0.1,end=5,num_points = 6):
+    def problem4(self,start=0.1,end=5,num_points=6):
         x_inter = np.linspace(start, end, num_points)
         y_inter = self.func(x_inter, self.mu, self.sigma)
         datapoints = [*zip(list(x_inter), list(y_inter))]
@@ -289,10 +297,10 @@ class HW5:
         # 2 Use Normal Equation to solve the linear system
         x, rsme = self.normalEquation(A, b)
 
-        k, c2 = x
+        c2, k = x
         c1 = np.exp(k)
 
-        print("c1:{0},c2:{1}".format(c1,c2))
+        print("c1:{0},c2:{1},rsme:{2}".format(c1,c2,rsme))
 
         f = lambda t, a, b: a * t * np.exp(b * t)
 
@@ -302,7 +310,7 @@ class HW5:
         # 画出拟合后的图像
         x_points = np.linspace(x_inter[0], x_inter[-1], 100)
         y_hat = f(x_points, c1, c2)
-        plt.plot(x_points, y_hat, "g", label="fitted")
+        plt.plot(x_points, y_hat, label="power_law")
 
         plt.legend()
         plt.show()
@@ -311,11 +319,11 @@ class HW5:
 
 if __name__ == "__main__":
     hw5 = HW5()
-    #
+
     # hw5.problem1()
-    #
+
     # hw5.problem2()
 
-    # hw5.problem3()
+    hw5.problem3()
 
-    # hw5.problem4()
+    hw5.problem4()

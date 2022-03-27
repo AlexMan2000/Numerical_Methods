@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="062f94c9-0762-48f0-b7da-ab1da12aa3d4" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/hw5_jn2294/hw5.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/hw1_jn2294/hw1.py" afterPath="$PROJECT_DIR$/hw1_jn2294/hw1.py" />
-      <change beforePath="$PROJECT_DIR$/hw2_jn2294/hw2.py" afterPath="$PROJECT_DIR$/hw2_jn2294/hw2.py" />
-      <change beforePath="$PROJECT_DIR$/hw3_jn2294/hw3.py" afterPath="$PROJECT_DIR$/hw3_jn2294/hw3.py" />
-      <change beforePath="$PROJECT_DIR$/test.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py" afterPath="$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py" />
+      <change beforePath="$PROJECT_DIR$/MidTerm整理/test.py" afterPath="$PROJECT_DIR$/MidTerm整理/test.py" />
+      <change beforePath="$PROJECT_DIR$/hw5_jn2294/hw5.py" afterPath="$PROJECT_DIR$/hw5_jn2294/hw5.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,18 +21,19 @@
     <SUITE FILE_PATH="coverage/Programs$midterm_practice2.coverage" NAME="midterm_practice2 Coverage Results" MODIFIED="1647780121609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$hw1__1_.coverage" NAME="hw1 (1) Coverage Results" MODIFIED="1644160987947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw1" />
     <SUITE FILE_PATH="coverage/Programs$hw3.coverage" NAME="hw3 Coverage Results" MODIFIED="1648094596033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw3_jn2294" />
-    <SUITE FILE_PATH="coverage/Programs$Lecture1314.coverage" NAME="Lecture1314拟合 Coverage Results" MODIFIED="1648095855223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$Lecture09101112__1_.coverage" NAME="Lecture09101112线性代数 (1) Coverage Results" MODIFIED="1648115676841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MidTerm整理" />
+    <SUITE FILE_PATH="coverage/Programs$Lecture1314.coverage" NAME="Lecture1314拟合 Coverage Results" MODIFIED="1648364860859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$midterm_practice5.coverage" NAME="midterm_practice5 Coverage Results" MODIFIED="1647852376756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$hw1.coverage" NAME="hw1 Coverage Results" MODIFIED="1647762524891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw1_jn2294" />
     <SUITE FILE_PATH="coverage/Programs$submission.coverage" NAME="submission Coverage Results" MODIFIED="1648122873686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jn2294_midterm_submission" />
-    <SUITE FILE_PATH="coverage/Programs$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1648216958111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw5_jn2294" />
+    <SUITE FILE_PATH="coverage/Programs$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1648366384262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw5_jn2294" />
     <SUITE FILE_PATH="coverage/Programs$Lecture03040506.coverage" NAME="Lecture03040506插值 Coverage Results" MODIFIED="1647968218455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Programs$Lecture1314__1_.coverage" NAME="Lecture1314拟合 (1) Coverage Results" MODIFIED="1648364877684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MidTerm整理" />
     <SUITE FILE_PATH="coverage/Programs$hw2.coverage" NAME="hw2 Coverage Results" MODIFIED="1647971714504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hw2_jn2294" />
     <SUITE FILE_PATH="coverage/Programs$Lecture09101112.coverage" NAME="Lecture09101112线性代数 Coverage Results" MODIFIED="1647974025384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$midterm_practice.coverage" NAME="midterm_practice Coverage Results" MODIFIED="1647771170169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Programs$midterm_practice4.coverage" NAME="midterm_practice4 Coverage Results" MODIFIED="1647802145288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Programs$test.coverage" NAME="test Coverage Results" MODIFIED="1645096152181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Programs$test.coverage" NAME="test Coverage Results" MODIFIED="1648359608354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MidTerm整理" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -50,37 +49,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="submission.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jn2294_midterm_submission/submission.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-              <folding>
-                <element signature="e#1199#1594#0" expanded="false" />
-                <element signature="e#1660#2143#0" expanded="false" />
-                <element signature="e#2224#2611#0" expanded="false" />
-                <element signature="e#2673#3062#0" expanded="false" />
-                <element signature="e#4985#5129#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="hw5.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw5_jn2294/hw5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2695">
-              <caret line="315" column="5" lean-forward="true" selection-start-line="315" selection-start-column="5" selection-end-line="315" selection-end-column="5" />
+            <state relative-caret-position="171">
+              <caret line="123" column="8" lean-forward="false" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="8" />
               <folding>
                 <element signature="e#9#27#0" expanded="true" />
                 <element signature="e#376#764#0" expanded="false" />
                 <element signature="e#833#1281#0" expanded="false" />
                 <element signature="e#1971#2304#0" expanded="false" />
-                <element signature="e#2349#2849#0" expanded="false" />
-                <element signature="e#2928#4005#0" expanded="false" />
-                <element signature="e#5005#7495#0" expanded="false" />
-                <element signature="e#7559#7911#0" expanded="false" />
+                <element signature="e#3728#4805#0" expanded="false" />
+                <element signature="e#5335#5494#0" expanded="false" />
+                <element signature="e#5607#8118#0" expanded="false" />
+                <element signature="e#8182#8534#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hw1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hw1_jn2294/hw1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,8 +81,8 @@
       <file leaf-file-name="Lecture1314拟合.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1239">
-              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="1621">
+              <caret line="101" column="18" lean-forward="true" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -138,8 +131,9 @@
         <option value="$PROJECT_DIR$/Lecture1314拟合.py" />
         <option value="$PROJECT_DIR$/midterm_exam/submission.py" />
         <option value="$PROJECT_DIR$/MidTerm整理/Lecture09101112线性代数.py" />
-        <option value="$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py" />
         <option value="$PROJECT_DIR$/jn2294_midterm_submission/submission.py" />
+        <option value="$PROJECT_DIR$/MidTerm整理/test.py" />
+        <option value="$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py" />
         <option value="$PROJECT_DIR$/hw5_jn2294/hw5.py" />
       </list>
     </option>
@@ -151,7 +145,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="531" />
+    <option name="y" value="-11" />
     <option name="width" value="1222" />
     <option name="height" value="1038" />
   </component>
@@ -230,7 +225,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.hw5">
-    <configuration name="Lecture09101112线性代数 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Lecture1314拟合 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -243,7 +238,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Programs" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MidTerm整理/Lecture09101112线性代数.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -263,25 +258,6 @@
       <module name="Programs" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lecture1314拟合.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="hw3" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hw3_jn2294" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Programs" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw3_jn2294/hw3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -325,20 +301,39 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MidTerm整理" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Programs" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MidTerm整理/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Lecture1314拟合" />
-      <item index="1" class="java.lang.String" itemvalue="Python.hw3" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Lecture09101112线性代数 (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.submission" />
-      <item index="4" class="java.lang.String" itemvalue="Python.hw5" />
+      <item index="1" class="java.lang.String" itemvalue="Python.submission" />
+      <item index="2" class="java.lang.String" itemvalue="Python.hw5" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Lecture1314拟合 (1)" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.hw5" />
-        <item index="1" class="java.lang.String" itemvalue="Python.submission" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Lecture09101112线性代数 (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Lecture1314拟合" />
-        <item index="4" class="java.lang.String" itemvalue="Python.hw3" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Lecture1314拟合 (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Lecture1314拟合" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test" />
+        <item index="4" class="java.lang.String" itemvalue="Python.submission" />
       </list>
     </recent_temporary>
   </component>
@@ -389,20 +384,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35447338" sideWeight="0.21620172" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3510759" sideWeight="0.22263949" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35447338" sideWeight="0.7837983" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3510759" sideWeight="0.7773605" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16899142" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28379828" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41791844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997735" sideWeight="0.49356222" order="3" side_tool="false" content_ui="tabs" />
@@ -429,12 +423,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="38" />
+      <option name="time" value="41" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/hw1.py" />
     <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/hw1.py" />
@@ -633,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="254" column="4" lean-forward="false" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -641,7 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-460">
           <caret line="532" column="4" lean-forward="false" selection-start-line="532" selection-start-column="4" selection-end-line="532" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -649,25 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="308" column="5" lean-forward="false" selection-start-line="308" selection-start-column="5" selection-end-line="308" selection-end-column="5" />
-          <folding>
-            <element signature="e#485#1152#0" expanded="false" />
-            <element signature="e#1258#1928#0" expanded="false" />
-            <element signature="e#2024#2919#0" expanded="false" />
-            <element signature="e#3044#4214#0" expanded="false" />
-            <element signature="e#4289#4711#0" expanded="false" />
-            <element signature="e#7558#7814#0" expanded="false" />
-            <element signature="e#7940#9172#0" expanded="false" />
-            <element signature="e#9257#10184#0" expanded="false" />
-            <element signature="e#10264#11387#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw1_jn2294/hw1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="247" column="27" lean-forward="true" selection-start-line="247" selection-start-column="27" selection-end-line="247" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,9 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="970">
           <caret line="132" column="35" lean-forward="true" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -693,29 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="74" column="4" lean-forward="false" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1239">
-          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jn2294_midterm_submission/submission.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding>
-            <element signature="e#1199#1594#0" expanded="false" />
-            <element signature="e#1660#2143#0" expanded="false" />
-            <element signature="e#2224#2611#0" expanded="false" />
-            <element signature="e#2673#3062#0" expanded="false" />
-            <element signature="e#4985#5129#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,19 +672,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MidTerm整理/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#19#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jn2294_midterm_submission/submission.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding>
+            <element signature="e#1199#1594#0" expanded="false" />
+            <element signature="e#1660#2143#0" expanded="false" />
+            <element signature="e#2224#2611#0" expanded="false" />
+            <element signature="e#2673#3062#0" expanded="false" />
+            <element signature="e#4985#5129#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw1_jn2294/hw1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MidTerm整理/Lecture1314拟合.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1621">
+          <caret line="101" column="18" lean-forward="true" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hw5_jn2294/hw5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2695">
-          <caret line="315" column="5" lean-forward="true" selection-start-line="315" selection-start-column="5" selection-end-line="315" selection-end-column="5" />
+        <state relative-caret-position="171">
+          <caret line="123" column="8" lean-forward="false" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="8" />
           <folding>
             <element signature="e#9#27#0" expanded="true" />
             <element signature="e#376#764#0" expanded="false" />
             <element signature="e#833#1281#0" expanded="false" />
             <element signature="e#1971#2304#0" expanded="false" />
-            <element signature="e#2349#2849#0" expanded="false" />
-            <element signature="e#2928#4005#0" expanded="false" />
-            <element signature="e#5005#7495#0" expanded="false" />
-            <element signature="e#7559#7911#0" expanded="false" />
+            <element signature="e#3728#4805#0" expanded="false" />
+            <element signature="e#5335#5494#0" expanded="false" />
+            <element signature="e#5607#8118#0" expanded="false" />
+            <element signature="e#8182#8534#0" expanded="false" />
           </folding>
         </state>
       </provider>

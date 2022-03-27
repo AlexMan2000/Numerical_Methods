@@ -100,9 +100,9 @@ if __name__ == "__main__":
 
 
     # Line Fitting
-    # datapoints = [(-1,1),(0,0),(1,0),(2,-2)]
+    datapoints = [(-1,1),(0,0),(1,0),(2,-2)]
     # 想要fit一个二阶项
-    # fitting.polynomialModelFitting(datapoints,2)
+    fitting.polynomialModelFitting(datapoints,2)
 
 
     f = lambda t,a,b: a*np.exp(b*t)
@@ -110,9 +110,9 @@ if __name__ == "__main__":
     # y = np.array([1, 7, 20, 50, 79])
 
     # datapoints3 = [*zip(list(x),list(y))]
-    datapoints2 = [*zip([1,2,4,8,12,15,19,23,27,29,30,32,33],[2250,2500,5000,29000,120000,275000,1180000,3100000,7500000,24000000,42000000,220000000,410000000])]
-    # print(datapoints2)
-    fitting.polynomialFittingPackage(f,datapoints2)
+    # datapoints2 = [*zip([1,2,4,8,12,15,19,23,27,29,30,32,33],[2250,2500,5000,29000,120000,275000,1180000,3100000,7500000,24000000,42000000,220000000,410000000])]
+    # # print(datapoints2)
+    # fitting.polynomialFittingPackage(f,datapoints2)
 
 
 
