@@ -19,15 +19,21 @@ from numpy import array, zeros, diag, diagflat, dot
 
 class HW5:
     def __init__(self,mu=0,sigma=1,func=None):
+        self.x = sympy.symbols("x")
         self.mu = mu
         self.sigma= sigma
         if func is None:
             self.func = lambda x, mu=0, sigma=1: (1 / (np.sqrt(2 * np.pi) * sigma)) * (
                     np.exp((-1 / 2) * np.power((np.log(x) - mu)/sigma,2)) / x)
+
+            # Used for computing limit
+            self.func_sympy = (1 / (sympy.sqrt(2 * sympy.pi) * self.sigma)) * (
+                    sympy.exp((-1 / 2) * ((sympy.log(self.x) - self.mu)/self.sigma)**2) / self.x)
+
         else:
             self.func = func
-        self.x_points = np.linspace(0.1,5,100)
-        self.y_points = self.func(self.x_points,self.mu,self.sigma)
+        # self.x_points = np.linspace(0,5,100)
+        # self.y_points = self.func(self.x_points,self.mu,self.sigma)
 
 
     @staticmethod
@@ -62,13 +68,14 @@ class HW5:
             y = pair[1]
             x = pair[0]
             if option == "exponential":
-                b_res.append(math.log(y) - math.log(x))
+                if x == 0.0 and y == 0.0:
+                    b_res.append(0)
+                else:
+                    b_res.append(math.log(y) - math.log(x))
             elif option == "polynomial":
                 b_res.append(y)
 
         return np.array(b_res)
-
-
 
 
     # Helper function for Chebyshev Interpolation point calculation
@@ -109,6 +116,7 @@ class HW5:
                 f += coeff * (x ** order)
 
             return x, f, str(f)
+
 
     def plotInterpolation(self, data_point, func, x0):
         x_list = [pair[0] for pair in data_point]
@@ -178,7 +186,7 @@ class HW5:
 
 
     # Problem's main functions
-    def problem1(self,start=0.1,end=5,num_points=6,data_points=None):
+    def problem1(self,start=0,end=5,num_points=6,data_points=None):
 
         # 1. Determine interpolation points
 
@@ -188,7 +196,13 @@ class HW5:
             y_inter = self.func(x_inter, self.mu, self.sigma)
         else:
             x_inter = np.linspace(start, end, num_points)
-            y_inter = self.func(x_inter, self.mu, self.sigma)
+            if start == 0:
+                y_inter = list(self.func(x_inter[1:], self.mu, self.sigma))
+                y_inter.insert(sympy.limit(self.func_sympy,self.x,0),0)
+                y_inter = np.array(y_inter)
+            else:
+                y_inter = self.func(x_inter[1:], self.mu, self.sigma)
+
             data_point = [*zip(list(x_inter),list(y_inter))]
 
         # 1.1 Since we have 6 points, the 5 order polynomial is what we need for unique solution
@@ -198,7 +212,6 @@ class HW5:
         # 1.2 Construct linear system
         A = self.construct_A(data_point,order)
         b = self.construct_b(data_point)
-
 
         # 2. Solution for co-efficient for polynomial interpolation
         coeff = np.linalg.solve(A,b)
@@ -254,7 +267,7 @@ class HW5:
         plt.show()
 
 
-    def problem2(self,start=0.1,end=5,num_points=6):
+    def problem2(self,start=0,end=5,num_points=6):
         x_cheb = self.chebyshevInterpolation(start,end,num_points)
         x_cheb_vec = np.array(x_cheb)
 
@@ -266,10 +279,16 @@ class HW5:
         self.problem1(x_cheb[0],x_cheb[-1],len(x_cheb),data_points)
 
 
-    def problem3(self,start=0.1,end=5,num_points=6):
+    def problem3(self,start=0,end=5,num_points=6):
         x_inter = np.linspace(start, end, num_points)
-        y_inter = self.func(x_inter, self.mu, self.sigma)
-        data_points = [*zip(list(x_inter), list(y_inter))]
+        if start == 0:
+            y_inter = list(self.func(x_inter[1:], self.mu, self.sigma))
+            y_inter.insert(sympy.limit(self.func_sympy,self.x,0),0)
+            y_inter = np.array(y_inter)
+        else:
+            y_inter = self.func(x_inter[1:], self.mu, self.sigma)
+
+        data_points = [*zip(list(x_inter),list(y_inter))]
 
         order = 3
         x,rsme = self.polynomialModelFitting(data_points, order = order)
@@ -285,14 +304,20 @@ class HW5:
         return x,rsme
 
 
-    def problem4(self,start=0.1,end=5,num_points=6):
+    def problem4(self,start=0,end=5,num_points=6):
         x_inter = np.linspace(start, end, num_points)
-        y_inter = self.func(x_inter, self.mu, self.sigma)
-        datapoints = [*zip(list(x_inter), list(y_inter))]
+        if start == 0:
+            y_inter = list(self.func(x_inter[1:], self.mu, self.sigma))
+            y_inter.insert(sympy.limit(self.func_sympy, self.x, 0), 0)
+            y_inter = np.array(y_inter)
+        else:
+            y_inter = self.func(x_inter[1:], self.mu, self.sigma)
+
+        data_points = [*zip(list(x_inter), list(y_inter))]
 
         # 1. Construct AX=b with order = 1
-        A = self.construct_A(datapoints, 1)
-        b = self.construct_b(datapoints, "exponential")
+        A = self.construct_A(data_points, 1)
+        b = self.construct_b(data_points, "exponential")
 
         # 2 Use Normal Equation to solve the linear system
         x, rsme = self.normalEquation(A, b)
@@ -320,10 +345,10 @@ class HW5:
 if __name__ == "__main__":
     hw5 = HW5()
 
-    # hw5.problem1()
+    hw5.problem1()
 
-    # hw5.problem2()
+    hw5.problem2()
 
-    hw5.problem3()
+    # hw5.problem3()
 
-    hw5.problem4()
+    # hw5.problem4()
