@@ -153,15 +153,15 @@ class HW5:
             errorfunc *= (x - x_inter_points[i])
             errorfunc *= multiple
 
-        # Here we find c that maximizes the f^(6)(c)
-        upper_boundary = -float("inf")
-        upper_boundaries = []
+        # Here we find c that maximizes the value of f^(6)(c)
+        upper_boundary = 0
+        # upper_boundaries = []
         for inter_point in x_inter_points:
-            upper_boundaries.append((inter_point,misc.derivative(myfunc, x0=inter_point, dx=0.5e-2, n=6,args=(0,1),order=7)))
-            upper_boundary = max(misc.derivative(myfunc, x0=inter_point, dx=1e-4, n=6,args=(0,1),order=7),upper_boundary)
+            # upper_boundaries.append((inter_point,misc.derivative(myfunc, x0=inter_point, dx=0.5e-2, n=6,args=(0,1),order=7)))
+            upper_boundary = max(abs(misc.derivative(myfunc, x0=inter_point, dx=1e-4, n=6,args=(0,1),order=7)),upper_boundary)
         errorfunc *= upper_boundary
-
-        return x,errorfunc,upper_boundaries
+        print(str(errorfunc))
+        return x,errorfunc,None
 
 
     # Normal Equation Solver, return Least Square Solution and RSME
@@ -215,7 +215,6 @@ class HW5:
 
         # 2. Solution for co-efficient for polynomial interpolation
         coeff = np.linalg.solve(A,b)
-        print(coeff)
 
         # 2.1 The polynomial interpolation function
         interpolated_function = self.formatPolyFunction()
@@ -241,20 +240,26 @@ class HW5:
         # f(x) - P(x) = (x-x1)(x-x2)(x-x3)(x-x4)(x-x5)(x-x6)/6!*f^(6)(c)
         # 4.2.1 Defining functions
         x_sympy,func_sympy_error,upper_boundaries = self.polynomialErrorFunctionPlot(x_inter)
-        error_plot_y = []
+        error_plot_y,error_plot_y_abs,error_max_x,error_max = [],[],[],-float('inf')
 
         # 4.2.2 Draw Error Plot
-        x_points = np.linspace(start, end, 100)
+        x_points = np.linspace(start, end, 1000)
 
         for error_x in x_points:
             error_plot_y.append(float(func_sympy_error.evalf(subs={x_sympy: error_x})))
+            error_plot_y_abs.append(abs(float(func_sympy_error.evalf(subs={x_sympy: error_x}))))
 
         ax[1].plot(x_points, error_plot_y, label="Interpolation Error Plot")
 
         # 4.3 Compute error upper boundary
-        for upper_boundary in upper_boundaries:
-            print("Upper boundaries at x={0} is {1}".format(upper_boundary[0],upper_boundary[1]))
-
+        for i in range(len(error_plot_y)):
+            if error_plot_y[i] > error_max:
+                error_max = error_plot_y[i]
+                error_max_x = [x_points[i]]
+            elif error_plot_y[i] == error_max:
+                error_max_x.append(x_points[i])
+            # error_max_x.append(x_points[i]) if error_plot_y_abs[i] > error_max
+        print("Upper boundaries at x={0} is {1}".format(error_max_x,error_max))
 
         # 5. Adjust the axes
         ax[0].set_title("Interpolation Plot")
@@ -269,6 +274,7 @@ class HW5:
 
     def problem2(self,start=0,end=5,num_points=6):
         x_cheb = self.chebyshevInterpolation(start,end,num_points)
+        print(x_cheb)
         x_cheb_vec = np.array(x_cheb)
 
         y_cheb_vec = self.func(x_cheb_vec,0,1)
