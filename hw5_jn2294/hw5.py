@@ -160,7 +160,7 @@ class HW5:
             # upper_boundaries.append((inter_point,misc.derivative(myfunc, x0=inter_point, dx=0.5e-2, n=6,args=(0,1),order=7)))
             upper_boundary = max(abs(misc.derivative(myfunc, x0=inter_point, dx=1e-4, n=6,args=(0,1),order=7)),upper_boundary)
         errorfunc *= upper_boundary
-        print(str(errorfunc))
+        # print(str(errorfunc))
         return x,errorfunc,None
 
 
@@ -215,6 +215,7 @@ class HW5:
 
         # 2. Solution for co-efficient for polynomial interpolation
         coeff = np.linalg.solve(A,b)
+        print(coeff)
 
         # 2.1 The polynomial interpolation function
         interpolated_function = self.formatPolyFunction()
@@ -274,7 +275,7 @@ class HW5:
 
     def problem2(self,start=0,end=5,num_points=6):
         x_cheb = self.chebyshevInterpolation(start,end,num_points)
-        print(x_cheb)
+
         x_cheb_vec = np.array(x_cheb)
 
         y_cheb_vec = self.func(x_cheb_vec,0,1)
