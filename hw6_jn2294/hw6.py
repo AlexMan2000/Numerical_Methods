@@ -189,32 +189,54 @@ class HW6:
         self.plotInterpolation(t_inter,x_inter,t_full,x_full,mode,datetimes)
 
 
-    def problem2(self,start = -2,end=2,n=1024):
-        t = np.linspace(start,end,n)
+    def problem2(self,start = -2,end=2,N=1024):
+        ts = (end-start) / N  # step
+        sr = 1/ts  # sampling rate
+        T0 = 0.1984
+        f = lambda t: np.exp(-np.abs(t) / T0)
+        dt = 4 / N
+        t = np.arange(-2, 2, dt)
+        x = f(t)
 
-        T = 0.1984
-        f = lambda t : np.exp(-np.abs(t)/T)
-        ft = f(t)
 
-        # 0. Get the value of w
-        w = self.w(n)
-        self.w_ft = w
+        # Using DFT
+        # w = self.w(N)
+        # self.w_ft = w
+        # X,DFT = self.performDFT(x,N)
+        # X = 1/(np.sqrt(N))*X
 
-        # Perform DFT
-        dft_x,dft = self.performDFT(ft,n,"scipy")
+        n = np.arange(N)
+        k = n.reshape((N, 1))
 
-        # Perform FFT
-        fft_x,fft = self.performFFT(ft,n,"scipy")
+        # DFT Transformation
+        e = np.exp(-2j * np.pi * k * n / N)
+        # DFT Transformed
+        X = np.dot(e, x)
 
-        # Plot transformation in both cases
+        # plt
+        frq = k / 4  # two sides frequency range
+        X = np.abs(X) / sr
+        # get w1,f1
+        w1 = np.vstack((-frq[N // 2 - 1::-1], frq[:N // 2])) * np.pi * 2
+        f1 = np.hstack((X[N // 2 - 1::-1], X[:N // 2]))
+
+
+        # Compute FFT
+        xf = np.fft.fft(x) / N
+        # xf = np.fft.fft(xf) / N  # fft computing and normalization
+        w2 = w1
+        f2 = abs(xf)
+
+        # plot the result in frequency domain
         fig,ax = plt.subplots(2,1)
-        plt.subplots_adjust(hspace=0.5)
-        ax[0].plot(t,np.real(dft_x))
-        ax[1].plot(t,np.real(fft_x))
-
-        ax[0].set_title("dft")
-        ax[1].set_title("fft")
-
+        ax[1].plot(w1, f1, 'o-.', label='DFT', color='red')
+        ax[1].plot(w2, f2, 'o--', label='FFT', color='blue', alpha=0.5)
+        ww = np.linspace(-20, 20, 10000)
+        ax[0].plot(ww, 2 * T0 / (1 + (ww * T0) ** 2), label='$f(\omega)$', color='black')
+        plt.legend()
+        plt.xlabel('$\omega$')
+        plt.xlim([-20, 20])
+        plt.ylabel('$f(\omega)$')
         plt.show()
 
 
@@ -258,10 +280,9 @@ if __name__ == "__main__":
     # data_points = [1,-1]*4
     # hw6.problem1(data_points)
 
-    hw6.problem2(n=8)
+    hw6.problem2(N=1024)
 
     # hw6.problem3()
-
 
 
 
